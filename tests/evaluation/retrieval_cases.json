@@ -1,0 +1,98 @@
+[
+  {
+    "id": "RC-01",
+    "question": "What does the MergerFS setting `category.create=epmfs` specify, and what limitation is documented for it?",
+    "expected_source": "data/corpus/storage.jsonl",
+    "expected_section": "MergerFS",
+    "expected_behavior": "answer_with_evidence",
+    "evaluation_criteria": "Retrieve the MergerFS configuration containing `category.create=epmfs` and the documented caveat; preserve the source context and do not generalize beyond it."
+  },
+  {
+    "id": "RC-02",
+    "question": "What does the `StaleNetworkFileHandle` error (errno 116) indicate in the Plex incident, and was its cause established?",
+    "expected_source": "data/corpus/operations.jsonl",
+    "expected_section": "Plex — StaleNetworkFileHandle",
+    "expected_behavior": "answer_with_evidence",
+    "evaluation_criteria": "Retrieve the incident fragment identifying `StaleNetworkFileHandle` and errno 116, and state that the underlying cause was not established if that limitation is present."
+  },
+  {
+    "id": "RC-03",
+    "question": "Which NFS version and mount behavior are recorded in the storage configuration?",
+    "expected_source": "data/corpus/storage.jsonl",
+    "expected_section": "NFS",
+    "expected_behavior": "answer_with_evidence",
+    "evaluation_criteria": "Retrieve the recorded NFSv4.2, systemd automount, and hard-mount details; identify them as documented configuration rather than a fresh verification."
+  },
+  {
+    "id": "RC-04",
+    "question": "Which containers are associated with `/data` in the documented Docker configuration?",
+    "expected_source": "data/corpus/architecture.jsonl",
+    "expected_section": "Application services",
+    "expected_behavior": "answer_with_evidence",
+    "evaluation_criteria": "Retrieve the documented `/data` association for qBittorrent, Radarr, and Sonarr without inferring additional volume mappings or dependencies."
+  },
+  {
+    "id": "RC-05",
+    "question": "How is media storage documented as flowing from the Proxmox storage branches to the Ubuntu Docker services?",
+    "expected_source": "data/corpus/architecture.jsonl; data/corpus/storage.jsonl",
+    "expected_section": "Data flow; MergerFS; NFS",
+    "expected_behavior": "answer_with_temporal_warning",
+    "evaluation_criteria": "Retrieve the documented sequence of Proxmox storage branches, MergerFS, NFS, and Ubuntu/Docker, and clearly label it as historical documentation that was not revalidated as current."
+  },
+  {
+    "id": "RC-06",
+    "question": "What response to SQLite or I/O errors is documented, and how were database and media/download storage separated in that configuration?",
+    "expected_source": "data/corpus/operations.jsonl",
+    "expected_section": "SQLite / I/O troubleshooting",
+    "expected_behavior": "answer_with_temporal_warning",
+    "evaluation_criteria": "Retrieve the documented troubleshooting response and the local SSD database versus HDD media/downloads arrangement; warn that this describes historical configuration, not verified current state."
+  },
+  {
+    "id": "RC-07",
+    "question": "What might explain the different utilization levels across the storage locations, based on the documented storage layout and available snapshot?",
+    "expected_source": "data/corpus/storage.jsonl; data/corpus/current-state.jsonl",
+    "expected_section": "MergerFS; Storage",
+    "expected_behavior": "answer_with_temporal_warning",
+    "evaluation_criteria": "Retrieve relevant documented storage-layout context and the point-in-time utilization figures; distinguish evidence from inference, avoid asserting a confirmed cause, and note that the figures are a snapshot."
+  },
+  {
+    "id": "RC-08",
+    "question": "When was the most recent successful backup restore, and what evidence confirms it?",
+    "expected_source": "No supporting source or section identified in the corpus",
+    "expected_section": "",
+    "expected_behavior": "abstention",
+    "evaluation_criteria": "Abstain because the corpus does not establish the date of a most recent successful backup restore; do not invent a date or treat backup procedures as proof of a restore."
+  },
+  {
+    "id": "RC-09",
+    "question": "What Docker image tags are currently deployed for each service?",
+    "expected_source": "No supporting source or section identified in the corpus",
+    "expected_section": "",
+    "expected_behavior": "abstention",
+    "evaluation_criteria": "Abstain because current image tags are not established by the corpus; do not infer tags from service names or historical descriptions."
+  },
+  {
+    "id": "RC-10",
+    "question": "Is the documented MergerFS-to-NFS storage chain confirmed to be operating currently, as of 2026-11-20?",
+    "expected_source": "data/corpus/storage.jsonl; data/corpus/documentation-reconciliation.jsonl",
+    "expected_section": "MergerFS; NFS; Storage relationships",
+    "expected_behavior": "answer_with_temporal_warning",
+    "evaluation_criteria": "Retrieve the historical storage description and reconciliation finding; state that the current MergerFS/NFS relationship was not revalidated and do not present it as confirmed current operation."
+  },
+  {
+    "id": "RC-11",
+    "question": "Do the `/mnt/barracuda` and `/mnt/media-pool` paths on the Ubuntu VM represent confirmed mounted filesystems?",
+    "expected_source": "data/corpus/current-state.jsonl; data/corpus/documentation-reconciliation.jsonl",
+    "expected_section": "Ubuntu Server — VM 100; Storage relationships",
+    "expected_behavior": "answer_with_temporal_warning",
+    "evaluation_criteria": "Retrieve the observation that these paths appeared as autofs/systemd trigger mounts and were not confirmed mounted filesystems; preserve the date and scope of the observation."
+  },
+  {
+    "id": "RC-12",
+    "question": "Is the recent media storage branch healthy today according to SMART, and what evidence supports that conclusion?",
+    "expected_source": "data/corpus/storage.jsonl",
+    "expected_section": "SMART monitoring",
+    "expected_behavior": "abstention",
+    "evaluation_criteria": "Abstain on present health: SMART status through the documented USB/SAT path is unavailable or not established. State the limitation and do not claim the branch is healthy or failed."
+  }
+]
